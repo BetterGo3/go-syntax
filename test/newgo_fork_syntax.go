@@ -6,16 +6,13 @@ package fork
 
 enum reportSection {
 	TopPosts
-
 	SubredditBreakdown
-
 	CommentDepth
 }
 
 enum Color {
 	Red { r, g, b int }
 	Green
-
 	Blue(int)
 }
 
@@ -28,7 +25,6 @@ enum Message {
 
 enum Option[T any] {
 	None
-
 	Some(T)
 }
 
@@ -46,11 +42,18 @@ func lambdaChain(posts []Post) {
 }
 
 func switchExpr(v Color) string {
-	return switchv{case Red:"red"case Green:"green"default:"other"}
+	return switch v {
+	case Red:
+		"red"
+	case Green:
+		"green"
+	default:
+		"other"
+	}
 }
 
 func ifExpr(ok bool) int {
-	return ifok{1}else{0}
+	return if ok { 1 } else { 0 }
 }
 
 func nullCond(obj *Person) string? {
