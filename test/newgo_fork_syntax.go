@@ -43,7 +43,7 @@ func lambdaChain(posts []Post) {
 
 func switchExpr(v Color) string {
 	return switch v {
-	case Red:
+	case Red {}:
 		"red"
 	case Green:
 		"green"
