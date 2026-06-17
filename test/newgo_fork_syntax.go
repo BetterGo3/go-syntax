@@ -17,7 +17,10 @@ enum Color {
 }
 
 enum Message {
-	Write { text string, bytes int }
+	Write {
+		text string,
+		bytes int
+	}
 }
 
 enum Option[T any] {
@@ -54,7 +57,7 @@ func ifExpr(ok bool) int {
 }
 
 func nullCond(obj *Person) string? {
-	return obj?.Name?.Title
+	return obj?.Name
 }
 
 type Post struct {

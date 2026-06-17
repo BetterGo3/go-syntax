@@ -70,22 +70,25 @@
 #     ^^^^^^^ source.go entity.name.type.enum.go
 #            ^ source.go
 #             ^ source.go punctuation.definition.begin.bracket.curly.go
->	Write { text string, bytes int }
+>	Write {
 #^ source.go
 # ^^^^^ source.go constant.other.enum-member.go
 #      ^ source.go
 #       ^ source.go punctuation.definition.begin.bracket.curly.go
-#        ^ source.go
-#         ^^^^ source.go variable.other.property.go
-#             ^ source.go
-#              ^^^^^^ source.go storage.type.string.go
-#                    ^ source.go punctuation.other.comma.go
-#                     ^ source.go
-#                      ^^^^^ source.go variable.other.property.go
-#                           ^ source.go
-#                            ^^^ source.go storage.type.numeric.go
-#                               ^ source.go
-#                                ^ source.go punctuation.definition.end.bracket.curly.go
+>		text string,
+#^^ source.go
+#  ^^^^ source.go variable.other.property.go
+#      ^ source.go
+#       ^^^^^^ source.go storage.type.string.go
+#             ^ source.go punctuation.other.comma.go
+>		bytes int
+#^^ source.go
+#  ^^^^^ source.go variable.other.property.go
+#       ^ source.go
+#        ^^^ source.go storage.type.numeric.go
+>	}
+#^ source.go
+# ^ source.go punctuation.definition.end.bracket.curly.go
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
@@ -320,15 +323,13 @@
 #                           ^^^^^^ source.go storage.type.string.go
 #                                 ^^ source.go
 #                                   ^ source.go punctuation.definition.begin.bracket.curly.go
->	return obj?.Name?.Title
+>	return obj?.Name
 #^ source.go
 # ^^^^^^ source.go keyword.control.go
 #       ^ source.go
 #        ^^^ source.go variable.other.go
 #           ^^ source.go keyword.operator.null-conditional.go
 #             ^^^^ source.go variable.other.go
-#                 ^^ source.go keyword.operator.null-conditional.go
-#                   ^^^^^ source.go variable.other.go
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
