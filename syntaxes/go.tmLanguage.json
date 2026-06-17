@@ -74,6 +74,9 @@
 					"include": "#multi_types"
 				},
 				{
+					"include": "#enum_declaration"
+				},
+				{
 					"include": "#struct_interface_declaration"
 				},
 				{
@@ -120,6 +123,9 @@
 			"comment": "includes all type declarations",
 			"patterns": [
 				{
+					"include": "#fork_type_modifiers"
+				},
+				{
 					"include": "#language_constants"
 				},
 				{
@@ -163,6 +169,9 @@
 		"type-declarations-without-brackets": {
 			"comment": "includes all type declarations without brackets (in some cases, brackets need to be captured manually)",
 			"patterns": [
+				{
+					"include": "#fork_type_modifiers"
+				},
 				{
 					"include": "#language_constants"
 				},
@@ -451,6 +460,10 @@
 					"name": "punctuation.other.comma.go"
 				},
 				{
+					"match": "\\?\\.",
+					"name": "keyword.operator.null-conditional.go"
+				},
+				{
 					"match": "\\.(?!\\.\\.)",
 					"name": "punctuation.other.period.go"
 				},
@@ -502,12 +515,52 @@
 				{
 					"match": "\\btype\\b",
 					"name": "keyword.type.go"
+				},
+				{
+					"match": "\\benum\\b",
+					"name": "keyword.type.go"
+				}
+			]
+		},
+		"fork_type_modifiers": {
+			"comment": "Go fork nullable (T?) and result (T!) type suffixes",
+			"patterns": [
+				{
+					"match": "([\\w\\.\\[\\]\\*]+)([!?])\\b",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#storage_types"
+								},
+								{
+									"match": "\\w+",
+									"name": "entity.name.type.go"
+								}
+							]
+						},
+						"2": {
+							"name": "keyword.operator.type-modifier.go"
+						}
+					}
 				}
 			]
 		},
 		"operators": {
 			"comment": "Note that the order here is very important!",
 			"patterns": [
+				{
+					"match": "=>",
+					"name": "keyword.operator.lambda.go"
+				},
+				{
+					"match": "\\?\\?",
+					"name": "keyword.operator.null-coalescing.go"
+				},
+				{
+					"match": "\\!\\.",
+					"name": "keyword.operator.result-unwrap.go"
+				},
 				{
 					"match": "(?<!\\w)(?:\\*|\\&)+(?:(?!\\d)(?=(?:[\\w\\[\\]])|(?:\\<\\-)))",
 					"name": "keyword.operator.address.go"
@@ -1756,7 +1809,7 @@
 				},
 				{
 					"comment": "uses a named group to recursively match generic type with nested brackets, like 'Foo[A[B, C]]{}'",
-					"match": "\\b(?!struct\\b|interface\\b)([\\w\\.]+)(?<brackets>\\[(?:[^\\[\\]]|\\g<brackets>)*\\])?(?=\\{)",
+					"match": "\\b(?!struct\\b|interface\\b|enum\\b)([\\w\\.]+)(?<brackets>\\[(?:[^\\[\\]]|\\g<brackets>)*\\])?(?=\\{)",
 					"captures": {
 						"1": {
 							"patterns": [
@@ -2557,6 +2610,105 @@
 					]
 				}
 			}
+		},
+		"enum_declaration": {
+			"comment": "enum type declarations (Go fork algebraic enums)",
+			"begin": "(\\benum\\b)\\s+([\\w\\.]+)(?:\\s*(\\[[^\\]]*\\]))?\\s*(\\{)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.type.go"
+				},
+				"2": {
+					"name": "entity.name.type.enum.go"
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#generic_param_types"
+						},
+						{
+							"include": "#parameter-variable-types"
+						}
+					]
+				},
+				"4": {
+					"name": "punctuation.definition.begin.bracket.curly.go"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.end.bracket.curly.go"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#enum_variants"
+				},
+				{
+					"include": "#enum_variant_struct"
+				},
+				{
+					"include": "#enum_variant_tuple"
+				},
+				{
+					"include": "#type-declarations"
+				}
+			]
+		},
+		"enum_variants": {
+			"comment": "enum variant names",
+			"match": "\\b([A-Z]\\w*)\\b(?=\\s*(?:\\(|\\{|=|$|[\\n;]))",
+			"name": "constant.other.enum-member.go"
+		},
+		"enum_variant_struct": {
+			"comment": "struct payload on an enum variant (nested braces must not close the enum)",
+			"begin": "\\{",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.begin.bracket.curly.go"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.end.bracket.curly.go"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#struct_variables_types_fields"
+				},
+				{
+					"include": "$self"
+				}
+			]
+		},
+		"enum_variant_tuple": {
+			"comment": "tuple payload on an enum variant",
+			"begin": "\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.begin.bracket.round.go"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.end.bracket.round.go"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#type-declarations"
+				},
+				{
+					"include": "#parameter-variable-types"
+				},
+				{
+					"include": "$self"
+				}
+			]
 		},
 		"switch_types": {
 			"comment": "switch type assertions, only highlights types after case keyword",

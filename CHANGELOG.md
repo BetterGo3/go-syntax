@@ -2,6 +2,10 @@
 
 All notable changes to the "go-syntax" extension will be documented in this file.
 
+## [0.8.8]
+
+- Supports Go fork syntax: `enum` declarations with variants, `T!` / `T?`, `=>`, `??`, `?.`, and `!.` operators
+
 ## [0.8.7]
 
 - Fixes catastrophic backtracking due to struct tags in libraries (e.g., Shiki) powered by JS Engine ([#23](https://github.com/worlpaker/go-syntax/pull/23))
