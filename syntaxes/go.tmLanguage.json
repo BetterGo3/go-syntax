@@ -77,6 +77,12 @@
 					"include": "#enum_declaration"
 				},
 				{
+					"include": "#shorthand_struct_declaration"
+				},
+				{
+					"include": "#shorthand_interface_declaration"
+				},
+				{
 					"include": "#struct_interface_declaration"
 				},
 				{
@@ -2650,6 +2656,84 @@
 				},
 				{
 					"include": "#enum_variant_tuple"
+				},
+				{
+					"include": "#type-declarations"
+				}
+			]
+		},
+		"shorthand_struct_declaration": {
+			"comment": "struct type shorthand declarations (Go fork: struct Name { ... })",
+			"begin": "(\\bstruct\\b)\\s+([\\w\\.]+)(?:\\s*(\\[[^\\]]*\\]))?\\s*(\\{)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.struct.go"
+				},
+				"2": {
+					"name": "entity.name.type.go"
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#generic_param_types"
+						},
+						{
+							"include": "#parameter-variable-types"
+						}
+					]
+				},
+				"4": {
+					"name": "punctuation.definition.begin.bracket.curly.go"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.end.bracket.curly.go"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#struct_variables_types_fields"
+				},
+				{
+					"include": "#type-declarations"
+				}
+			]
+		},
+		"shorthand_interface_declaration": {
+			"comment": "interface type shorthand declarations (Go fork: interface Name { ... })",
+			"begin": "(\\binterface\\b)\\s+([\\w\\.]+)(?:\\s*(\\[[^\\]]*\\]))?\\s*(\\{)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.interface.go"
+				},
+				"2": {
+					"name": "entity.name.type.go"
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#generic_param_types"
+						},
+						{
+							"include": "#parameter-variable-types"
+						}
+					]
+				},
+				"4": {
+					"name": "punctuation.definition.begin.bracket.curly.go"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.end.bracket.curly.go"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#interface_variables_types_field"
 				},
 				{
 					"include": "#type-declarations"

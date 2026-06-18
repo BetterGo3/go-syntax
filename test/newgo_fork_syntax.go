@@ -67,7 +67,11 @@ type Post struct {
 	Score int
 }
 
-type Person struct {
+struct Person {
 	Name  string
 	Title string
+}
+
+interface Named interface {
+	Name() string
 }
