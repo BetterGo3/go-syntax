@@ -72,6 +72,6 @@ struct Person {
 	Title string
 }
 
-interface Named interface {
+interface Named {
 	Name() string
 }
