@@ -36,6 +36,7 @@ func nullable(x int?) int {
 	return x ?? 0
 }
 
+// Real code needs import "linq"; omitted here so this grammar sample stays import-free.
 func lambdaChain(posts []Post) {
 	_ = posts.Where(p => p.Score >= 10)
 		.Select(p => p.Title)
