@@ -32,6 +32,19 @@ func fetchPosts() []Post! {
 	return nil
 }
 
+func fetchSliceOfResults() [](Post!) {
+	var p Post!
+	return [](Post!){p}
+}
+
+func fetchOptionalPosts() []Post? {
+	return nil
+}
+
+func fetchSliceOfOptionals() [](Post?) {
+	return nil
+}
+
 func fetchOne() Post! {
 	return Post{}
 }
