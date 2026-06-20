@@ -162,6 +162,9 @@
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
+>// Real code needs import "linq"; omitted here so this grammar sample stays import-free.
+#^^ source.go comment.line.double-slash.go punctuation.definition.comment.go
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.go comment.line.double-slash.go
 >func lambdaChain(posts []Post) {
 #^^^^ source.go keyword.function.go
 #    ^ source.go
@@ -226,7 +229,7 @@
 #                         ^^^^^^ source.go storage.type.string.go
 #                               ^ source.go
 #                                ^ source.go punctuation.definition.begin.bracket.curly.go
->	return switch v { case Red: "red" case Green: "green" default: "other" }
+>	return switch v {
 #^ source.go
 # ^^^^^^ source.go keyword.control.go
 #       ^ source.go
@@ -235,33 +238,57 @@
 #               ^ source.go variable.other.go
 #                ^ source.go
 #                 ^ source.go punctuation.definition.begin.bracket.curly.go
-#                  ^ source.go
-#                   ^^^^ source.go keyword.control.go
-#                       ^ source.go
-#                        ^^^ source.go variable.other.go
-#                           ^ source.go punctuation.other.colon.go
-#                            ^ source.go
-#                             ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
-#                              ^^^ source.go string.quoted.double.go
-#                                 ^ source.go string.quoted.double.go punctuation.definition.string.end.go
-#                                  ^ source.go
-#                                   ^^^^ source.go keyword.control.go
-#                                       ^ source.go
-#                                        ^^^^^ source.go variable.other.go
-#                                             ^ source.go punctuation.other.colon.go
-#                                              ^ source.go
-#                                               ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
-#                                                ^^^^^ source.go string.quoted.double.go
-#                                                     ^ source.go string.quoted.double.go punctuation.definition.string.end.go
-#                                                      ^ source.go
-#                                                       ^^^^^^^ source.go keyword.control.go
-#                                                              ^ source.go punctuation.other.colon.go
-#                                                               ^ source.go
-#                                                                ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
-#                                                                 ^^^^^ source.go string.quoted.double.go
-#                                                                      ^ source.go string.quoted.double.go punctuation.definition.string.end.go
-#                                                                       ^ source.go
-#                                                                        ^ source.go punctuation.definition.end.bracket.curly.go
+>	case Red {}:
+#^ source.go
+# ^^^^ source.go keyword.control.go
+#     ^ source.go
+#      ^^^ source.go variable.other.go
+#         ^ source.go
+#          ^ source.go punctuation.definition.begin.bracket.curly.go
+#           ^ source.go punctuation.definition.end.bracket.curly.go
+#            ^ source.go punctuation.other.colon.go
+>		"red"
+#^^ source.go
+#  ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
+#   ^^^ source.go string.quoted.double.go
+#      ^ source.go string.quoted.double.go punctuation.definition.string.end.go
+>	case Green:
+#^ source.go
+# ^^^^ source.go keyword.control.go
+#     ^ source.go
+#      ^^^^^ source.go variable.other.go
+#           ^ source.go punctuation.other.colon.go
+>		"green"
+#^^ source.go
+#  ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
+#   ^^^^^ source.go string.quoted.double.go
+#        ^ source.go string.quoted.double.go punctuation.definition.string.end.go
+>	case Blue(_):
+#^ source.go
+# ^^^^ source.go keyword.control.go
+#     ^ source.go
+#      ^^^^ source.go entity.name.function.support.go
+#          ^ source.go punctuation.definition.begin.bracket.round.go
+#           ^ source.go variable.other.go
+#            ^ source.go punctuation.definition.end.bracket.round.go
+#             ^ source.go punctuation.other.colon.go
+>		"blue"
+#^^ source.go
+#  ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
+#   ^^^^ source.go string.quoted.double.go
+#       ^ source.go string.quoted.double.go punctuation.definition.string.end.go
+>	default:
+#^ source.go
+# ^^^^^^^ source.go keyword.control.go
+#        ^ source.go punctuation.other.colon.go
+>		"other"
+#^^ source.go
+#  ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
+#   ^^^^^ source.go string.quoted.double.go
+#        ^ source.go string.quoted.double.go punctuation.definition.string.end.go
+>	}
+#^ source.go
+# ^ source.go punctuation.definition.end.bracket.curly.go
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
@@ -347,14 +374,12 @@
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
->type Person struct {
-#^^^^ source.go keyword.type.go
-#    ^ source.go
-#     ^^^^^^ source.go entity.name.type.go
-#           ^ source.go
-#            ^^^^^^ source.go keyword.struct.go
-#                  ^ source.go
-#                   ^ source.go punctuation.definition.begin.bracket.curly.go
+>struct Person {
+#^^^^^^ source.go keyword.struct.go
+#      ^ source.go
+#       ^^^^^^ source.go entity.name.type.go
+#             ^ source.go
+#              ^ source.go punctuation.definition.begin.bracket.curly.go
 >	Name  string
 #^ source.go
 # ^^^^ source.go variable.other.property.go
@@ -365,6 +390,22 @@
 # ^^^^^ source.go variable.other.property.go
 #      ^ source.go
 #       ^^^^^^ source.go storage.type.string.go
+>}
+#^ source.go punctuation.definition.end.bracket.curly.go
+>
+>interface Named {
+#^^^^^^^^^ source.go keyword.interface.go
+#         ^ source.go
+#          ^^^^^ source.go entity.name.type.go
+#               ^ source.go
+#                ^ source.go punctuation.definition.begin.bracket.curly.go
+>	Name() string
+#^ source.go
+# ^^^^ source.go entity.name.function.support.go
+#     ^ source.go punctuation.definition.begin.bracket.round.go
+#      ^ source.go punctuation.definition.end.bracket.round.go
+#       ^ source.go
+#        ^^^^^^ source.go storage.type.string.go
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
