@@ -1,4 +1,4 @@
-// SYNTAX TEST "source.go" "Go fork syntax (enum, lambdas, result types)"
+// SYNTAX TEST "source.go" "Go fork syntax (enum, lambdas, result types, default args)"
 
 // Go fork syntax highlighting samples (see go/doc/new_features/).
 
@@ -30,6 +30,22 @@ enum Option[T any] {
 
 func fetchPosts() []Post! {
 	return nil
+}
+
+func fetchOne() Post! {
+	return Post{}
+}
+
+func readTitle() string! {
+	return fetchOne()!.Title
+}
+
+func greet(name string, greeting string = "hello") string {
+	return greeting + " " + name
+}
+
+func open(path string, mode Mode = Read) Mode {
+	return mode
 }
 
 func nullable(x int?) int {

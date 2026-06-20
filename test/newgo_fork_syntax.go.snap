@@ -1,6 +1,6 @@
->// SYNTAX TEST "source.go" "Go fork syntax (enum, lambdas, result types)"
+>// SYNTAX TEST "source.go" "Go fork syntax (enum, lambdas, result types, default args)"
 #^^ source.go comment.line.double-slash.go punctuation.definition.comment.go
-#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.go comment.line.double-slash.go
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.go comment.line.double-slash.go
 >
 >// Go fork syntax highlighting samples (see go/doc/new_features/).
 #^^ source.go comment.line.double-slash.go punctuation.definition.comment.go
@@ -133,6 +133,122 @@
 # ^^^^^^ source.go keyword.control.go
 #       ^ source.go
 #        ^^^ source.go constant.language.null.go
+>}
+#^ source.go punctuation.definition.end.bracket.curly.go
+>
+>func fetchOne() Post! {
+#^^^^ source.go keyword.function.go
+#    ^ source.go
+#     ^^^^^^^^ source.go entity.name.function.go
+#             ^ source.go punctuation.definition.begin.bracket.round.go
+#              ^ source.go punctuation.definition.end.bracket.round.go
+#               ^ source.go
+#                ^^^^ source.go variable.other.go
+#                    ^ source.go keyword.operator.logical.go
+#                     ^ source.go
+#                      ^ source.go punctuation.definition.begin.bracket.curly.go
+>	return Post{}
+#^ source.go
+# ^^^^^^ source.go keyword.control.go
+#       ^ source.go
+#        ^^^^ source.go entity.name.type.go
+#            ^ source.go punctuation.definition.begin.bracket.curly.go
+#             ^ source.go punctuation.definition.end.bracket.curly.go
+>}
+#^ source.go punctuation.definition.end.bracket.curly.go
+>
+>func readTitle() string! {
+#^^^^ source.go keyword.function.go
+#    ^ source.go
+#     ^^^^^^^^^ source.go entity.name.function.go
+#              ^ source.go punctuation.definition.begin.bracket.round.go
+#               ^ source.go punctuation.definition.end.bracket.round.go
+#                ^ source.go
+#                 ^^^^^^ source.go storage.type.string.go
+#                       ^ source.go keyword.operator.logical.go
+#                        ^ source.go
+#                         ^ source.go punctuation.definition.begin.bracket.curly.go
+>	return fetchOne()!.Title
+#^ source.go
+# ^^^^^^ source.go keyword.control.go
+#       ^ source.go
+#        ^^^^^^^^ source.go entity.name.function.support.go
+#                ^ source.go punctuation.definition.begin.bracket.round.go
+#                 ^ source.go punctuation.definition.end.bracket.round.go
+#                  ^^ source.go keyword.operator.result-unwrap.go
+#                    ^^^^^ source.go variable.other.go
+>}
+#^ source.go punctuation.definition.end.bracket.curly.go
+>
+>func greet(name string, greeting string = "hello") string {
+#^^^^ source.go keyword.function.go
+#    ^ source.go
+#     ^^^^^ source.go entity.name.function.go
+#          ^ source.go punctuation.definition.begin.bracket.round.go
+#           ^^^^ source.go variable.parameter.go
+#               ^ source.go
+#                ^^^^^^ source.go storage.type.string.go
+#                      ^ source.go punctuation.other.comma.go
+#                       ^ source.go
+#                        ^^^^^^^^ source.go variable.parameter.go
+#                                ^ source.go
+#                                 ^^^^^^ source.go storage.type.string.go
+#                                       ^ source.go
+#                                        ^ source.go keyword.operator.assignment.go
+#                                         ^ source.go
+#                                          ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
+#                                           ^^^^^ source.go string.quoted.double.go
+#                                                ^ source.go string.quoted.double.go punctuation.definition.string.end.go
+#                                                 ^ source.go punctuation.definition.end.bracket.round.go
+#                                                  ^ source.go
+#                                                   ^^^^^^ source.go storage.type.string.go
+#                                                         ^ source.go
+#                                                          ^ source.go punctuation.definition.begin.bracket.curly.go
+>	return greeting + " " + name
+#^ source.go
+# ^^^^^^ source.go keyword.control.go
+#       ^ source.go
+#        ^^^^^^^^ source.go variable.other.go
+#                ^ source.go
+#                 ^ source.go keyword.operator.arithmetic.go
+#                  ^ source.go
+#                   ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
+#                    ^ source.go string.quoted.double.go
+#                     ^ source.go string.quoted.double.go punctuation.definition.string.end.go
+#                      ^ source.go
+#                       ^ source.go keyword.operator.arithmetic.go
+#                        ^ source.go
+#                         ^^^^ source.go variable.other.go
+>}
+#^ source.go punctuation.definition.end.bracket.curly.go
+>
+>func open(path string, mode Mode = Read) Mode {
+#^^^^ source.go keyword.function.go
+#    ^ source.go
+#     ^^^^ source.go entity.name.function.go
+#         ^ source.go punctuation.definition.begin.bracket.round.go
+#          ^^^^ source.go variable.parameter.go
+#              ^ source.go
+#               ^^^^^^ source.go storage.type.string.go
+#                     ^ source.go punctuation.other.comma.go
+#                      ^ source.go
+#                       ^^^^ source.go variable.parameter.go
+#                           ^ source.go
+#                            ^^^^ source.go entity.name.type.go
+#                                ^ source.go
+#                                 ^ source.go keyword.operator.assignment.go
+#                                  ^ source.go
+#                                   ^^^^ source.go entity.name.type.go
+#                                       ^ source.go punctuation.definition.end.bracket.round.go
+#                                        ^ source.go
+#                                         ^^^^ source.go entity.name.type.go
+#                                             ^ source.go
+#                                              ^ source.go punctuation.definition.begin.bracket.curly.go
+>	return mode
+#^ source.go
+# ^^^^^^ source.go keyword.control.go
+#       ^ source.go
+#        ^^^^ source.go variable.other.go
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
