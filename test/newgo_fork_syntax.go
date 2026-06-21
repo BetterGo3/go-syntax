@@ -4,6 +4,8 @@
 
 package fork
 
+import "linq"
+
 enum reportSection {
 	TopPosts
 	SubredditBreakdown
@@ -19,8 +21,13 @@ enum Color {
 enum Message {
 	Write {
 		text string,
-		bytes int
+		bytes int,
 	}
+}
+
+enum Mode {
+	Read
+	Write
 }
 
 enum Option[T any] {
@@ -65,7 +72,7 @@ func nullable(x int?) int {
 	return x ?? 0
 }
 
-// Real code needs import "linq"; omitted here so this grammar sample stays import-free.
+// Real code needs import "linq"; import above enables gopls on lambda chains.
 func lambdaChain(posts []Post) {
 	_ = posts.Where(p => p.Score >= 10)
 		.Select(p => p.Title)
