@@ -1,3 +1,5 @@
+//go:build ignore
+
 // SYNTAX TEST "source.go" "Semantic Tokens Test"
 
 package main
