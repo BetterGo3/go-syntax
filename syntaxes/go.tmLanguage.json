@@ -529,7 +529,7 @@
 			]
 		},
 		"fork_type_modifiers": {
-			"comment": "Go fork nullable (T?) and result (T!) type suffixes",
+			"comment": "Go fork nilable (T?) and result (T!) type suffixes",
 			"patterns": [
 				{
 					"match": "([\\w\\.\\[\\]\\*]+)([!?])\\b",

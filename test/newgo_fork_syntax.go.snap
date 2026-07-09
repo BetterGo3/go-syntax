@@ -334,7 +334,7 @@
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
->func nullable(x int?) int {
+>func nilable(x int?) int {
 #^^^^ source.go keyword.function.go
 #    ^ source.go
 #     ^^^^^^^^ source.go entity.name.function.go

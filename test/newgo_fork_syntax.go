@@ -68,7 +68,7 @@ func open(path string, mode Mode = Read) Mode {
 	return mode
 }
 
-func nullable(x int?) int {
+func nilable(x int?) int {
 	return x ?? 0
 }
 
