@@ -8,8 +8,8 @@
   "license": "MIT",
   "icon": "icon/icon.png",
   "repository": {
-    "types": "git",
-    "url": "https://github.com/worlpaker/go-syntax.git"
+    "type": "git",
+    "url": "https://github.com/Bow5/bow-syntax.git"
   },
   "bugs": {
     "url": "https://github.com/worlpaker/go-syntax/issues"

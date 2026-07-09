@@ -22,7 +22,7 @@ Yes, please! Feel free to contribute. Check out [CONTRIBUTING.md](CONTRIBUTING.m
 
 ## Credits
 
-This extension enhances [better-go-syntax](https://github.com/jeff-hykin/better-go-syntax) with new features.
+Rich syntax highlighting for the [Bow](https://github.com/Bow5/Bow) programming language, extending [go-syntax](https://github.com/worlpaker/go-syntax) with Bow-specific features.
 
 Semantic tokens tested thanks to the [vscode-tmgrammar-test](https://github.com/PanAeon/vscode-tmgrammar-test).
 
