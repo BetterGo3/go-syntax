@@ -1,6 +1,7 @@
+// SYNTAX TEST "source.go" "Stress Test"
+
 //go:build ignore
 
-// SYNTAX TEST "source.go" "Stress Test"
 package main
 
 // variables
