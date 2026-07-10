@@ -99,7 +99,11 @@ func nullCond(obj *Person) string? {
 	return obj?.Name
 }
 
-type Post struct {
+func newNSLock(isDistErasure bool) *nsLockMap? {
+	return nil
+}
+
+type nsLockMap struct{}
 	Title string
 	Score int
 }

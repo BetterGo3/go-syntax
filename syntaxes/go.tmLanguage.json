@@ -532,7 +532,70 @@
 			"comment": "Go fork nilable (T?) and result (T!) type suffixes",
 			"patterns": [
 				{
-					"match": "([\\w\\.\\[\\]\\*]+)([!?])\\b",
+					"match": "(\\*)([\\w\\.]+)(\\?)(?!\\?)",
+					"captures": {
+						"1": {
+							"name": "keyword.operator.address.go"
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "#storage_types"
+								},
+								{
+									"match": "\\w+",
+									"name": "entity.name.type.go"
+								}
+							]
+						},
+						"3": {
+							"name": "keyword.operator.type-modifier.go"
+						}
+					}
+				},
+				{
+					"match": "(\\*)([\\w\\.]+)(!)(?![.=])",
+					"captures": {
+						"1": {
+							"name": "keyword.operator.address.go"
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "#storage_types"
+								},
+								{
+									"match": "\\w+",
+									"name": "entity.name.type.go"
+								}
+							]
+						},
+						"3": {
+							"name": "keyword.operator.type-modifier.go"
+						}
+					}
+				},
+				{
+					"match": "([\\w\\.\\[\\]]+)(\\?)(?!\\?)",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#storage_types"
+								},
+								{
+									"match": "\\w+",
+									"name": "entity.name.type.go"
+								}
+							]
+						},
+						"2": {
+							"name": "keyword.operator.type-modifier.go"
+						}
+					}
+				},
+				{
+					"match": "([\\w\\.\\[\\]]+)(!)(?![.=])",
 					"captures": {
 						"1": {
 							"patterns": [
@@ -1219,7 +1282,7 @@
 							},
 							"patterns": [
 								{
-									"match": "(?:(\\w+(?:\\s+))?((?:[\\w\\.\\*]+)(?:\\[(?:(?:(?:[\\w\\.\\*]+)(?:\\,\\s+)?)+)?\\])?))",
+									"match": "(?:(\\w+(?:\\s+))?((?:[\\w\\.\\*\\[\\]]+)(?:[!?])?(?:\\[(?:(?:(?:[\\w\\.\\*]+)(?:\\,\\s+)?)+)?\\])?))",
 									"captures": {
 										"1": {
 											"name": "variable.parameter.go"
@@ -1260,10 +1323,54 @@
 					]
 				}
 			},
-			"end": "(?:(?<=\\))\\s*((?:(?:(?:[\\*\\[\\]]+)?(?:\\<\\-\\s*)?\\bchan\\b(?:\\s*\\<\\-)?\\s*)+)?(?!(?:[\\[\\]\\*]+)?(?:\\bstruct\\b|\\binterface\\b))[\\w\\.\\-\\*\\[\\]]+)?\\s*(?=\\{))",
+			"end": "(?:(?<=\\))\\s*((?:(?:(?:[\\*\\[\\]]+)?(?:\\<\\-\\s*)?\\bchan\\b(?:\\s*\\<\\-)?\\s*)+)?(?!(?:[\\[\\]\\*]+)?(?:\\bstruct\\b|\\binterface\\b))[\\w\\.\\-\\*\\[\\]]+[!?]?)?\\s*(?=\\{))",
 			"endCaptures": {
 				"1": {
 					"patterns": [
+						{
+							"match": "(\\*)([\\w\\.]+)(\\?)(?!\\?)",
+							"captures": {
+								"1": {
+									"name": "keyword.operator.address.go"
+								},
+								"2": {
+									"patterns": [
+										{
+											"include": "#storage_types"
+										},
+										{
+											"match": "\\w+",
+											"name": "entity.name.type.go"
+										}
+									]
+								},
+								"3": {
+									"name": "keyword.operator.type-modifier.go"
+								}
+							}
+						},
+						{
+							"match": "(\\*)([\\w\\.]+)(!)(?![.=])",
+							"captures": {
+								"1": {
+									"name": "keyword.operator.address.go"
+								},
+								"2": {
+									"patterns": [
+										{
+											"include": "#storage_types"
+										},
+										{
+											"match": "\\w+",
+											"name": "entity.name.type.go"
+										}
+									]
+								},
+								"3": {
+									"name": "keyword.operator.type-modifier.go"
+								}
+							}
+						},
 						{
 							"include": "#type-declarations-without-brackets"
 						},
@@ -1329,7 +1436,7 @@
 				},
 				{
 					"comment": "single function as a type returned type(s) declaration",
-					"match": "(?:(?<=\\))(?:\\s*)((?:(?:\\s*(?:[\\*\\[\\]]+)?(?:\\<\\-\\s*)?\\bchan\\b(?:\\s*\\<\\-)?\\s*)+)?[\\w\\*\\.\\[\\]\\<\\>\\-]+(?:\\s*)(?:\\/(?:\\/|\\*).*)?)$)",
+					"match": "(?:(?<=\\))(?:\\s*)((?:(?:\\s*(?:[\\*\\[\\]]+)?(?:\\<\\-\\s*)?\\bchan\\b(?:\\s*\\<\\-)?\\s*)+)?[\\w\\*\\.\\[\\]\\<\\>\\-]+[!?]?(?:\\s*)(?:\\/(?:\\/|\\*).*)?)$)",
 					"captures": {
 						"1": {
 							"patterns": [
@@ -2366,7 +2473,7 @@
 							]
 						}
 					},
-					"end": "(?:(?<=\\])((?:\\s+)(?:\\=\\s*)?(?:(?:(?:[\\*\\[\\]]+)?(?:\\<\\-\\s*)?\\bchan\\b(?:\\s*\\<\\-)?\\s*)+)?(?:(?!(?:[\\[\\]\\*]+)?(?:\\bstruct\\b|\\binterface\\b|\\bfunc\\b))[\\w\\.\\-\\*\\[\\]]+(?:\\,\\s*[\\w\\.\\[\\]\\*]+)*))?)",
+					"end": "(?:(?<=\\])((?:\\s+)(?:\\=\\s*)?(?:(?:(?:[\\*\\[\\]]+)?(?:\\<\\-\\s*)?\\bchan\\b(?:\\s*\\<\\-)?\\s*)+)?(?:(?!(?:[\\[\\]\\*]+)?(?:\\bstruct\\b|\\binterface\\b|\\bfunc\\b))[\\w\\.\\-\\*\\[\\]]+[!?]?(?:\\,\\s*[\\w\\.\\[\\]\\*]+[!?]?)*))?)",
 					"endCaptures": {
 						"1": {
 							"patterns": [

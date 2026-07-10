@@ -1,0 +1,64 @@
+>// SYNTAX TEST "source.go" "Pointer nilable return type"
+#^^ source.go comment.line.double-slash.go punctuation.definition.comment.go
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.go comment.line.double-slash.go
+>
+>package test
+#^^^^^^^ source.go keyword.package.go
+#       ^ source.go
+#        ^^^^ source.go entity.name.type.package.go
+>
+>type nsLockMap struct{}
+#^^^^ source.go keyword.type.go
+#    ^ source.go
+#     ^^^^^^^^^ source.go entity.name.type.go
+#              ^ source.go
+#               ^^^^^^ source.go keyword.struct.go
+#                     ^ source.go punctuation.definition.begin.bracket.curly.go
+#                      ^ source.go punctuation.definition.end.bracket.curly.go
+>
+>func newNSLock(isDistErasure bool) *nsLockMap? {
+#^^^^ source.go keyword.function.go
+#    ^ source.go
+#     ^^^^^^^^^ source.go entity.name.function.go
+#              ^ source.go punctuation.definition.begin.bracket.round.go
+#               ^^^^^^^^^^^^^ source.go variable.parameter.go
+#                            ^ source.go
+#                             ^^^^ source.go storage.type.boolean.go
+#                                 ^ source.go punctuation.definition.end.bracket.round.go
+#                                  ^ source.go
+#                                   ^ source.go keyword.operator.address.go
+#                                    ^^^^^^^^^ source.go entity.name.type.go
+#                                             ^ source.go keyword.operator.type-modifier.go
+#                                              ^ source.go
+#                                               ^ source.go punctuation.definition.begin.bracket.curly.go
+>	return nil
+#^ source.go
+# ^^^^^^ source.go keyword.control.go
+#       ^ source.go
+#        ^^^ source.go constant.language.null.go
+>}
+#^ source.go punctuation.definition.end.bracket.curly.go
+>
+>func find(path string) *dataUsageEntry? {
+#^^^^ source.go keyword.function.go
+#    ^ source.go
+#     ^^^^ source.go entity.name.function.go
+#         ^ source.go punctuation.definition.begin.bracket.round.go
+#          ^^^^ source.go variable.parameter.go
+#              ^ source.go
+#               ^^^^^^ source.go storage.type.string.go
+#                     ^ source.go punctuation.definition.end.bracket.round.go
+#                      ^ source.go
+#                       ^ source.go keyword.operator.address.go
+#                        ^^^^^^^^^^^^^^ source.go entity.name.type.go
+#                                      ^ source.go keyword.operator.type-modifier.go
+#                                       ^ source.go
+#                                        ^ source.go punctuation.definition.begin.bracket.curly.go
+>	return nil
+#^ source.go
+# ^^^^^^ source.go keyword.control.go
+#       ^ source.go
+#        ^^^ source.go constant.language.null.go
+>}
+#^ source.go punctuation.definition.end.bracket.curly.go
+>

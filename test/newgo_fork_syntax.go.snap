@@ -11,6 +11,13 @@
 #       ^ source.go
 #        ^^^^ source.go entity.name.type.package.go
 >
+>import "linq"
+#^^^^^^ source.go keyword.control.import.go
+#      ^ source.go
+#       ^ source.go string.quoted.double.go punctuation.definition.string.begin.go
+#        ^^^^ source.go string.quoted.double.go entity.name.import.go
+#            ^ source.go string.quoted.double.go punctuation.definition.string.end.go
+>
 >enum reportSection {
 #^^^^ source.go keyword.type.go
 #    ^ source.go
@@ -81,14 +88,30 @@
 #      ^ source.go
 #       ^^^^^^ source.go storage.type.string.go
 #             ^ source.go punctuation.other.comma.go
->		bytes int
+>		bytes int,
 #^^ source.go
 #  ^^^^^ source.go variable.other.property.go
 #       ^ source.go
 #        ^^^ source.go storage.type.numeric.go
+#           ^ source.go punctuation.other.comma.go
 >	}
 #^ source.go
 # ^ source.go punctuation.definition.end.bracket.curly.go
+>}
+#^ source.go punctuation.definition.end.bracket.curly.go
+>
+>enum Mode {
+#^^^^ source.go keyword.type.go
+#    ^ source.go
+#     ^^^^ source.go entity.name.type.enum.go
+#         ^ source.go
+#          ^ source.go punctuation.definition.begin.bracket.curly.go
+>	Read
+#^ source.go
+# ^^^^ source.go constant.other.enum-member.go
+>	Write
+#^ source.go
+# ^^^^^ source.go constant.other.enum-member.go
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
@@ -122,10 +145,9 @@
 #               ^ source.go punctuation.definition.begin.bracket.round.go
 #                ^ source.go punctuation.definition.end.bracket.round.go
 #                 ^ source.go
-#                  ^ source.go punctuation.definition.begin.bracket.square.go
-#                   ^ source.go punctuation.definition.end.bracket.square.go
-#                    ^^^^ source.go variable.other.go
-#                        ^ source.go keyword.operator.logical.go
+#                  ^^ source.go
+#                    ^^^^ source.go entity.name.type.go
+#                        ^ source.go keyword.operator.type-modifier.go
 #                         ^ source.go
 #                          ^ source.go punctuation.definition.begin.bracket.curly.go
 >	return nil
@@ -147,7 +169,7 @@
 #                            ^ source.go punctuation.definition.end.bracket.square.go
 #                             ^ source.go punctuation.definition.begin.bracket.round.go
 #                              ^^^^ source.go entity.name.type.go
-#                                  ^ source.go keyword.operator.logical.go
+#                                  ^ source.go keyword.operator.type-modifier.go
 #                                   ^ source.go punctuation.definition.end.bracket.round.go
 #                                    ^ source.go
 #                                     ^ source.go punctuation.definition.begin.bracket.curly.go
@@ -166,8 +188,8 @@
 #        ^ source.go punctuation.definition.begin.bracket.square.go
 #         ^ source.go punctuation.definition.end.bracket.square.go
 #          ^ source.go punctuation.definition.begin.bracket.round.go
-#           ^^^^ source.go variable.other.go
-#               ^ source.go keyword.operator.logical.go
+#           ^^^^ source.go entity.name.type.go
+#               ^ source.go keyword.operator.type-modifier.go
 #                ^ source.go punctuation.definition.end.bracket.round.go
 #                 ^ source.go punctuation.definition.begin.bracket.curly.go
 #                  ^ source.go variable.other.go
@@ -182,10 +204,10 @@
 #                       ^ source.go punctuation.definition.begin.bracket.round.go
 #                        ^ source.go punctuation.definition.end.bracket.round.go
 #                         ^ source.go
-#                          ^ source.go punctuation.definition.begin.bracket.square.go
-#                           ^ source.go punctuation.definition.end.bracket.square.go
-#                            ^^^^ source.go variable.other.go
-#                                ^^ source.go
+#                          ^^ source.go
+#                            ^^^^ source.go entity.name.type.go
+#                                ^ source.go keyword.operator.type-modifier.go
+#                                 ^ source.go
 #                                  ^ source.go punctuation.definition.begin.bracket.curly.go
 >	return nil
 #^ source.go
@@ -206,7 +228,7 @@
 #                              ^ source.go punctuation.definition.end.bracket.square.go
 #                               ^ source.go punctuation.definition.begin.bracket.round.go
 #                                ^^^^ source.go entity.name.type.go
-#                                    ^ source.go
+#                                    ^ source.go keyword.operator.type-modifier.go
 #                                     ^ source.go punctuation.definition.end.bracket.round.go
 #                                      ^ source.go
 #                                       ^ source.go punctuation.definition.begin.bracket.curly.go
@@ -225,8 +247,8 @@
 #             ^ source.go punctuation.definition.begin.bracket.round.go
 #              ^ source.go punctuation.definition.end.bracket.round.go
 #               ^ source.go
-#                ^^^^ source.go variable.other.go
-#                    ^ source.go keyword.operator.logical.go
+#                ^^^^ source.go entity.name.type.go
+#                    ^ source.go keyword.operator.type-modifier.go
 #                     ^ source.go
 #                      ^ source.go punctuation.definition.begin.bracket.curly.go
 >	return Post{}
@@ -247,7 +269,7 @@
 #               ^ source.go punctuation.definition.end.bracket.round.go
 #                ^ source.go
 #                 ^^^^^^ source.go storage.type.string.go
-#                       ^ source.go keyword.operator.logical.go
+#                       ^ source.go keyword.operator.type-modifier.go
 #                        ^ source.go
 #                         ^ source.go punctuation.definition.begin.bracket.curly.go
 >	return fetchOne()!.Title
@@ -337,17 +359,17 @@
 >func nilable(x int?) int {
 #^^^^ source.go keyword.function.go
 #    ^ source.go
-#     ^^^^^^^^ source.go entity.name.function.go
-#             ^ source.go punctuation.definition.begin.bracket.round.go
-#              ^ source.go variable.parameter.go
-#               ^ source.go
-#                ^^^ source.go storage.type.numeric.go
-#                   ^ source.go
-#                    ^ source.go punctuation.definition.end.bracket.round.go
-#                     ^ source.go
-#                      ^^^ source.go storage.type.numeric.go
-#                         ^ source.go
-#                          ^ source.go punctuation.definition.begin.bracket.curly.go
+#     ^^^^^^^ source.go entity.name.function.go
+#            ^ source.go punctuation.definition.begin.bracket.round.go
+#             ^ source.go variable.parameter.go
+#              ^ source.go
+#               ^^^ source.go storage.type.numeric.go
+#                  ^ source.go
+#                   ^ source.go punctuation.definition.end.bracket.round.go
+#                    ^ source.go
+#                     ^^^ source.go storage.type.numeric.go
+#                        ^ source.go
+#                         ^ source.go punctuation.definition.begin.bracket.curly.go
 >	return x ?? 0
 #^ source.go
 # ^^^^^^ source.go keyword.control.go
@@ -360,9 +382,9 @@
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
->// Real code needs import "linq"; omitted here so this grammar sample stays import-free.
+>// Real code needs import "linq"; import above enables gopls on lambda chains.
 #^^ source.go comment.line.double-slash.go punctuation.definition.comment.go
-#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.go comment.line.double-slash.go
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.go comment.line.double-slash.go
 >func lambdaChain(posts []Post) {
 #^^^^ source.go keyword.function.go
 #    ^ source.go
@@ -539,38 +561,63 @@
 #                         ^ source.go punctuation.definition.end.bracket.round.go
 #                          ^ source.go
 #                           ^^^^^^ source.go storage.type.string.go
-#                                 ^^ source.go
+#                                 ^ source.go keyword.operator.type-modifier.go
+#                                  ^ source.go
 #                                   ^ source.go punctuation.definition.begin.bracket.curly.go
 >	return obj?.Name
 #^ source.go
 # ^^^^^^ source.go keyword.control.go
 #       ^ source.go
-#        ^^^ source.go variable.other.go
-#           ^^ source.go keyword.operator.null-conditional.go
+#        ^^^ source.go entity.name.type.go
+#           ^ source.go keyword.operator.type-modifier.go
+#            ^ source.go punctuation.other.period.go
 #             ^^^^ source.go variable.other.go
 >}
 #^ source.go punctuation.definition.end.bracket.curly.go
 >
->type Post struct {
+>func newNSLock(isDistErasure bool) *nsLockMap? {
+#^^^^ source.go keyword.function.go
+#    ^ source.go
+#     ^^^^^^^^^ source.go entity.name.function.go
+#              ^ source.go punctuation.definition.begin.bracket.round.go
+#               ^^^^^^^^^^^^^ source.go variable.parameter.go
+#                            ^ source.go
+#                             ^^^^ source.go storage.type.boolean.go
+#                                 ^ source.go punctuation.definition.end.bracket.round.go
+#                                  ^ source.go
+#                                   ^ source.go keyword.operator.address.go
+#                                    ^^^^^^^^^ source.go entity.name.type.go
+#                                             ^ source.go keyword.operator.type-modifier.go
+#                                              ^ source.go
+#                                               ^ source.go punctuation.definition.begin.bracket.curly.go
+>	return nil
+#^ source.go
+# ^^^^^^ source.go keyword.control.go
+#       ^ source.go
+#        ^^^ source.go constant.language.null.go
+>}
+#^ source.go punctuation.definition.end.bracket.curly.go
+>
+>type nsLockMap struct{}
 #^^^^ source.go keyword.type.go
 #    ^ source.go
-#     ^^^^ source.go entity.name.type.go
-#         ^ source.go
-#          ^^^^^^ source.go keyword.struct.go
-#                ^ source.go
-#                 ^ source.go punctuation.definition.begin.bracket.curly.go
+#     ^^^^^^^^^ source.go entity.name.type.go
+#              ^ source.go
+#               ^^^^^^ source.go keyword.struct.go
+#                     ^ source.go punctuation.definition.begin.bracket.curly.go
+#                      ^ source.go punctuation.definition.end.bracket.curly.go
 >	Title string
 #^ source.go
-# ^^^^^ source.go variable.other.property.go
+# ^^^^^ source.go variable.other.go
 #      ^ source.go
 #       ^^^^^^ source.go storage.type.string.go
 >	Score int
 #^ source.go
-# ^^^^^ source.go variable.other.property.go
+# ^^^^^ source.go variable.other.go
 #      ^ source.go
 #       ^^^ source.go storage.type.numeric.go
 >}
-#^ source.go punctuation.definition.end.bracket.curly.go
+#^^ source.go
 >
 >struct Person {
 #^^^^^^ source.go keyword.struct.go
